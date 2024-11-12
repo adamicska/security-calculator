@@ -75,13 +75,20 @@ function App() {
         calcBuffer.length > 0 && setCalcBuffer([...calcBuffer, value]);
       }
     } else if (value === ".") {
-      // Prevent multiple decimals, add a leading zero if necessary
+      // Prevent multiple decimals in a same number, add a leading zero if necessary
       if (!calcBuffer.length) {
         setCalcBuffer(["0", value]);
-      } else if (!calcBuffer[calcBuffer.length - 1].includes(".")) {
-        setCalcBuffer([...calcBuffer, value]);
       } else {
-        console.log("repeating decimal");
+        let lastNumber = "";
+        for (let i = calcBuffer.length - 1; i >= 0; i--) {
+          if (["+", "-", "x", "÷", "%"].includes(calcBuffer[i])) {
+            break;
+          }
+          lastNumber = calcBuffer[i] + lastNumber;
+        }
+        if (!lastNumber.includes(".")) {
+          setCalcBuffer([...calcBuffer, value]);
+        }
       }
     } else {
       setCalcBuffer([...calcBuffer, value]);
@@ -92,15 +99,14 @@ function App() {
     <div className="App">
       <div>
         <header className="App-header">
-          <h1 className="is-size-1">Calculator</h1>
+          <h1 className="is-size-1 mt-6 mb-4">Calculator</h1>
         </header>
       </div>
-      <main className="calculator card mx-auto mt-4">
+      <main className="calculator card mx-auto p-4">
         <div
-          className="has-background-light"
+          className="has-background-light mx-2 p-2"
           style={{
-            borderTopLeftRadius: "0.75rem",
-            borderTopRightRadius: "6px",
+            borderRadius: "0.75rem",
           }}
         >
           {/* Calculator buffer */}
@@ -126,7 +132,7 @@ function App() {
           </div>
         </div>
         {/* Keypad */}
-        <div className="grid has-4-columns">
+        <div className="grid has-4-columns mt-2">
           {buttons.map((button, index) => {
             return (
               <div
