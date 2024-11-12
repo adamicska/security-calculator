@@ -13,10 +13,10 @@
   cursor: pointer;
 }
 
-.calculator-button:active, .calculator-button:focus {
+/* .calculator-button:active, .calculator-button:focus {
   outline: none;
   background-color: #4a5161;
-}
+} */
 
 .calculator-button[data-label="0"] {
   grid-column: left-border / sec-div;

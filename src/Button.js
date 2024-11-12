@@ -1,9 +1,17 @@
-import './Button.css';
+import "./Button.css";
 
 function Button(props) {
- 
+  const { label, handleClick } = props;
   return (
-    <button className="calculator-button" data-label={props.label}><span>{props.label}</span></button>
+    <button
+      className={`button is-fullwidth ${
+        label === "=" ? "is-primary" : label === "AC" ? "is-danger" : ""
+      }`}
+      data-label={label}
+      onClick={handleClick}
+    >
+      <span>{props.label}</span>
+    </button>
   );
 }
 
