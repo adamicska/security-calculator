@@ -1,6 +1,9 @@
 import "./App.css";
 
 import { useState } from "react";
+import { evaluate } from "mathjs";
+
+// Components
 import Button from "./Button";
 
 const buttons = [
@@ -54,7 +57,7 @@ function App() {
           .replace("x", "*")
           .replace("÷", "/")
           .replace("%", "/100");
-        const result = eval(expression);
+        const result = evaluate(expression);
         setDisplay(result.toString());
       } catch (error) {
         setDisplay("Error");
