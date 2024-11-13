@@ -7,6 +7,7 @@ function Button(props) {
       className={`button is-fullwidth ${
         label === "=" ? "is-primary" : label === "AC" ? "is-danger" : ""
       }`}
+      data-testid={label}
       data-label={label}
       onClick={handleClick}
     >

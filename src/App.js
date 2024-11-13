@@ -110,7 +110,11 @@ function App() {
           }}
         >
           {/* Calculator buffer */}
-          <div className="is-size-4 is-flex is-justify-content-right pr-2">
+          <div
+            id="buffer"
+            data-testid="buffer"
+            className="is-size-4 is-flex is-justify-content-right pr-2"
+          >
             {calcBuffer?.length ? (
               calcBuffer.map((v, i) => (
                 <p
@@ -127,7 +131,7 @@ function App() {
             )}
           </div>
           {/* Result */}
-          <div className="display pr-2">
+          <div id="result" data-testid="result" className="display pr-2">
             <p>{display}</p>
           </div>
         </div>
@@ -140,7 +144,8 @@ function App() {
                 className={`cell ${button === "=" ? "is-col-span-2" : ""} m-2`}
               >
                 <Button
-                  id={index + "btn-id"}
+                  id={button + "btn-id"}
+                  testid={button}
                   label={button}
                   value={button}
                   handleClick={() => handleClick(button)}
